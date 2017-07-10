@@ -126,6 +126,8 @@ if(Input::exists()){
 	}
 
 	if($validation->passed() && $agreement_checkbox){
+		// Stripe create customer
+		$customer = stripeCreateCustomer($stripeAPIkey, $username , $email, $fname, $lname, $db);
 		//Logic if ReCAPTCHA is turned ON
 	if($settings->recaptcha == 1 || $settings->recaptcha == 2){
 			require_once("includes/recaptcha.config.php");
@@ -182,13 +184,14 @@ if(Input::exists()){
 					password_hash(Input::get('password'), PASSWORD_BCRYPT, array('cost' => 12)),
 					'permissions' => 1,
 					'account_owner' => 1,
-					'stripe_cust_id' => '',
+					'stripe_cust_id' => $customer->id,
 					'join_date' => $join_date,
 					'company' => Input::get('company'),
 					'email_verified' => $pre,
 					'active' => 1,
 					'vericode' => $vericode,
 				));
+				logBaseSubscription($db,$username,$email);
 			} catch (Exception $e) {
 				die($e->getMessage());
 			}
