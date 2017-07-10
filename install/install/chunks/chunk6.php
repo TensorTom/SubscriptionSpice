@@ -12,6 +12,9 @@ $test_public = "Insert_Your_Own_Key_Here";
 $live_secret = "Insert_Your_Own_Key_Here";
 $live_public = "Insert_Your_Own_Key_Here";
 
+$stripeAPIkey = $live_secret;
+$stripePubKey = $live_public;
+
 require_once $abs_us_root.$us_url_root.'users/classes/Config.php';
 require_once $abs_us_root.$us_url_root.'users/classes/Cookie.php';
 require_once $abs_us_root.$us_url_root.'users/classes/DB.php';
