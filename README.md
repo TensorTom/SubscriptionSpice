@@ -1,4 +1,25 @@
-# UserSpice4
+# UserSpice4 + Stripe Subscriptions
+
+This is my fork of UserSpice with added Stripe subscriptions.
+
+Features
+
+* Stripe subscriptions via Stripe API.
+* Multiple products/plans supported.
+* Access level/group for each product.
+* Web-hook for subscription changes.
+* Automatic emails to customers.
+* All UserSpice registrations are automatically added as Stripe customers.
+* Pricing page.
+* Checkout page.
+* Thank you page.
+* Error page.
+* Multiple coupons & ajax coupon validation.
+* Billing history page for users.
+* A master table of transactions.
+* Different account page text for subscribers.
+
+----------------------------------------
  +UserSpice 4 is a complete OOP PDO PHP User Management System.  Full details, documentation, walkthroughs, and forums can be found at UserSpice.com.
  +
  +Ideally the git repository is for tracking changes.  All downloads should probably go through UserSpice.com where they are properly packaged for installtion. 
