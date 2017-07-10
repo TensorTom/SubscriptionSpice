@@ -38,6 +38,25 @@ $get_info_id = $user->data()->id;
 $raw = date_parse($user->data()->join_date);
 $signupdate = $raw['month']."/".$raw['day']."/".$raw['year'];
 $userdetails = fetchUserDetails(NULL, NULL, $get_info_id); //Fetch user details
+
+$currentUser = $user->data();
+
+// custom content based on user level
+if(userHasPermission($currentUser->id,4) || userHasPermission($currentUser->id,5) || userHasPermission($currentUser->id,6))
+{
+    $subscription = true;
+    $subHaving = 'have';
+    $subManage = 'manage your whatever';
+    $subLink = '/users/stuff_manager.php';
+    $btnText = 'Whatever Manager';
+}else{
+    $subscription = false;
+    $subHaving = "don't";
+    $subManage = 'subscribe';
+    $subLink = '/checkout.php';
+    $btnText = 'Subscribe';
+}
+
  ?>
 
 <div id="page-wrapper">
@@ -48,6 +67,7 @@ $userdetails = fetchUserDetails(NULL, NULL, $get_info_id); //Fetch user details
 		<p><img src="<?=$grav; ?>" class="img-thumbnail" alt="Generic placeholder thumbnail"></p>
 		<p><a href="user_settings.php" class="btn btn-primary">Edit Account Info</a></p>
 		<p><a class="btn btn-primary " href="profile.php?id=<?=$get_info_id;?>" role="button">Public Profile</a></p>
+		<p><a class="btn btn-primary " href="<?php echo $subLink; ?>" role="button"><?php echo $btnText; ?></a></p>
 
 	</div>
 	<div class="col-xs-12 col-md-9">
@@ -55,7 +75,7 @@ $userdetails = fetchUserDetails(NULL, NULL, $get_info_id); //Fetch user details
 		<p><?=ucfirst($user->data()->fname)." ".ucfirst($user->data()->lname)?></p>
 		<p>Member Since:<?=$signupdate?></p>
 		<p>Number of Logins: <?=$user->data()->logins?></p>
-		<p>This is the private account page for your users. It can be whatever you want it to be; This code serves as a guide on how to use some of the built-in UserSpice functionality. </p>
+		<p>Welcome to the member's area. You <?php echo $subHaving; ?> an active subscription. You can <?php echo $subManage; ?> <a href="<?php echo $subLink; ?>">here</a>.</p>
 
 	</div>
 </div>
