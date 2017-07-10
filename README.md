@@ -1,6 +1,6 @@
 # UserSpice4 + Stripe Subscriptions
 
-This is my fork of UserSpice with added Stripe subscriptions.
+This is my fork of UserSpice with added Stripe subscriptions. I haven't added the required MySQL fields and tables to the installer yet. That's next. Please report any issues and/or contribute with pull requests.
 
 Features
 
